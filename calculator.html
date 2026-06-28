@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Full Calculator Website</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#f4f4f4;
+    text-align:center;
+}
+
+nav{
+    background:#222;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    cursor:pointer;
+}
+
+.page{
+    display:none;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+.calculator{
+    width:320px;
+    margin:20px auto;
+    background:#222;
+    padding:20px;
+    border-radius:10px;
+}
+
+#display{
+    width:95%;
+    height:50px;
+    font-size:24px;
+    text-align:right;
+    margin-bottom:10px;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+button{
+    height:55px;
+    font-size:20px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('calculator')">Calculator</a>
+<a onclick="showPage('about')">About</a>
+<a onclick="showPage('settings')">Settings</a>
+<a onclick="showPage('profile')">Profile</a>
+</nav>
+
+<div id="home" class="page active">
+<h1>Home</h1>
+<p>Welcome to Full Calculator Website</p>
+</div>
+
+<div id="about" class="page">
+<h1>About</h1>
+<p>This calculator website is made using HTML, CSS and JavaScript.</p>
+</div>
+
+<div id="settings" class="page">
+<h1>Settings</h1>
+
+<label>
+<input type="checkbox" onclick="darkMode()">
+Dark Mode
+</label>
+
+</div>
+
+<div id="profile" class="page">
+<h1>Profile</h1>
+
+<img src="https://via.placeholder.com/150" width="150">
+
+<h2>Mohadeb Roy</h2>
+
+<p>Diploma in Computer Science & Technology Student</p>
+
+</div>
+
+<div id="calculator" class="page">
+
+<h1>Calculator</h1>
+
+<div class="calculator">
+
+<input type="text" id="display" readonly>
+
+<div class="buttons">
+
+<button onclick="clearDisplay()">C</button>
+<button onclick="deleteLast()">DEL</button>
+<button onclick="appendValue('%')">%</button>
+<button onclick="appendValue('/')">/</button>
+
+<button onclick="appendValue('7')">7</button>
+<button onclick="appendValue('8')">8</button>
+<button onclick="appendValue('9')">9</button>
+<button onclick="appendValue('*')">*</button>
+
+<button onclick="appendValue('4')">4</button>
+<button onclick="appendValue('5')">5</button>
+<button onclick="appendValue('6')">6</button>
+<button onclick="appendValue('-')">-</button>
+
+<button onclick="appendValue('1')">1</button>
+<button onclick="appendValue('2')">2</button>
+<button onclick="appendValue('3')">3</button>
+<button onclick="appendValue('+')">+</button>
+
+<button onclick="appendValue('0')">0</button>
+<button onclick="appendValue('.')">.</button>
+<button onclick="calculate()">=</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function showPage(page){
+
+document.querySelectorAll('.page').forEach(p=>{
+p.classList.remove('active');
+});
+
+document.getElementById(page).classList.add('active');
+
+}
+
+let display=document.getElementById("display");
+
+function appendValue(v){
+display.value+=v;
+}
+
+function clearDisplay(){
+display.value="";
+}
+
+function deleteLast(){
+display.value=display.value.slice(0,-1);
+}
+
+function calculate(){
+
+try{
+display.value=eval(display.value);
+}
+catch{
+display.value="Error";
+}
+
+}
+
+function darkMode(){
+
+if(document.body.style.background=="black"){
+document.body.style.background="#f4f4f4";
+document.body.style.color="black";
+}
+else{
+document.body.style.background="black";
+document.body.style.color="white";
+}
+
+}
+
+</script>
+
+</body>
+</html>
